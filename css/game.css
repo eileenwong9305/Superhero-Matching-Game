@@ -1,0 +1,214 @@
+*{
+  box-sizing: border-box;
+}
+body {
+    background: #ffffff url('../images/gaming-pattern.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+    font-style: normal;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+}
+.score-panel{
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  width: 480px;
+  margin-bottom: 5px;
+}
+.score-panel .stars{
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+.score-panel .stars li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  border: 1px white solid;
+}
+.star>img{
+  width:20px;
+  height: 20px;
+}
+.score-panel .restart{
+  margin: 0;
+  padding:0
+  display:inline-block;
+  float: right;
+  cursor: pointer;
+}
+.deck{
+  width:60%;
+  background-color: #08415C;
+  padding: 20px;
+  border-radius: 20px;
+  border: 5px #F0803C solid;
+}
+.card{
+  float:left;
+  width:21.6%;
+  padding-bottom: 21.6%;
+  margin:1.66%;
+  border-radius: 10px;
+  position: relative;
+  cursor:pointer;
+  -webkit-perspective: 800px;
+  -moz-perspective: 800px;
+  -o-perspective: 800px;
+  perspective: 800px;
+}
+.grad {
+  background: #141e30;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right bottom, #141e30, #243b55);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right bottom, #141e30, #243b55); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.card .content{
+  border-radius: 10px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.card .content .bg-content{
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 50%;
+}
+.card .content div{
+
+}
+.card .content .front{
+  position: absolute;
+  background-color: #F0803C;
+  border: 5px #F0803C solid;
+  -webkit-transform: rotateY( 0deg );
+  -moz-transform: rotateY( 0deg );
+  -o-transform: rotateY( 0deg );
+  transform: rotateY(0deg);
+}
+
+.card .content .back{
+  background-color: #EAF2E3;
+  border: 10px #EAF2E3 solid;
+  -webkit-transform: rotateY( 180deg );
+  -moz-transform: rotateY( 180deg );
+  -o-transform: rotateY( 180deg );
+  transform: rotateY(180deg);
+}
+
+.card .content .front-open{
+  transform: rotateY(180deg);
+}
+.card .content .back-open{
+  transform: rotateY(0deg);
+  cursor: not-allowed;
+}
+
+.card .content .match{
+  background-color: #fff94f;
+  border: 10px #fff94f solid;
+}
+.card .content .wrong{
+  background-color: #F25757;
+  border: 10px #F25757 solid;
+}
+
+/*
+ * character image
+ */
+.superman{
+  background-image: url("../images/superman.png");
+}
+.catwoman{
+  background-image: url("../images/catwoman.png");
+}
+.baymax{
+  background-image: url("../images/baymax.png");
+}
+.wolverine{
+  background-image: url("../images/wolverine.png");
+}
+.joker{
+  background-image: url("../images/joker.png");
+}
+.batman{
+  background-image: url("../images/batman.png");
+}
+.raphael{
+  background-image: url("../images/raphael.png");
+}
+.captain-america{
+  background-image: url("../images/captain_america.png");
+}
+.colossus{
+  background-image: url("../images/colossus.png");
+}
+.cyclops{
+  background-image: url("../images/cyclops.png");
+}
+.deadpool{
+  background-image: url("../images/deadpool.png");
+}
+.flash{
+  background-image: url("../images/flash.png");
+}
+.groot{
+  background-image: url("../images/groot.png");
+}
+.harley-quinn{
+  background-image: url("../images/harley-quinn.png");
+}
+.hellboy{
+  background-image: url("../images/hellboy.png");
+}
+.hulk{
+  background-image: url("../images/hulk.png");
+}
+.ironman{
+  background-image: url("../images/ironman.png");
+}
+.leonardo{
+  background-image: url("../images/leonardo.png");
+}
+.spiderman{
+  background-image: url("../images/spiderman.png");
+}
+.robocop{
+  background-image: url("../images/robocop.png");
+}
+.thor{
+  background-image: url("../images/thor.png");
+}
+.wonderwoman{
+  background-image: url("../images/wonderwoman.png");
+}
+.wolverine2{
+  background-image: url("../images/wolverine2.png");
+}
+.storm{
+  background-image: url("../images/storm.png");
+}
