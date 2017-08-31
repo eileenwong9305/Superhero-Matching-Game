@@ -58,6 +58,8 @@ function restart(){
   var match = $(".match, .front-open, .back-open");
   $(match).removeClass("front-open back-open match")
   openedCard=[];
+  $(".stars li:nth-child(3)").children().attr("src","images/star.png");
+  $(".stars li:nth-child(2)").children().attr("src","images/star.png");
   count=0;
   $(".count").text(count);
 }
