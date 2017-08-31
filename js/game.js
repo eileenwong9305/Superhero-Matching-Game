@@ -150,25 +150,36 @@ function endGame(){
 /*
  * Starting of games
  */
-prepareCard();
 
-$(".restart").on("click", function(){
-  restart();
-  setTimeout(function(){
-    prepareCard();
-  },300);
-});
+$(document).ready(function(){
 
-$(".content").on("click", function(evt){
-  var click=evt.target;
-  if(openCard(click)){
-    if (openedCard.length%2!==0){
-      keepCount();
-      starLevel();
-      checkMatch(click);
-    }else{
-      addCard(click);
+  /*
+   * Prompt user to start game
+   */
+  $(window).on('load',function(){
+    $( "#startModal" ).modal();
+  });
+  prepareCard();
+
+  $(".restart").on("click", function(){
+    restart();
+    setTimeout(function(){
+      prepareCard();
+    },300);
+  });
+
+  $(".content").on("click", function(evt){
+    var click=evt.target;
+    if(openCard(click)){
+      if (openedCard.length%2!==0){
+        keepCount();
+        starLevel();
+        checkMatch(click);
+      }else{
+        addCard(click);
+      }
+      endGame();
     }
-    endGame();
-  }
-})
+  })
+
+});
