@@ -4,6 +4,7 @@
 var openedCard=[];
 var clickCard;
 var count=0;
+var timer;
 var superhero = [
   "batman","baymax","captain-america","catwoman", "colossus","cyclops",
   "deadpool","flash","groot","harley-quinn","hellboy","hulk","ironman","joker",
@@ -135,6 +136,21 @@ function starLevel(){
   }
 }
 
+function startTimer(){
+  var start = new Date().getTime();
+  timer = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = now - start;
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    $(".time").text(minutes + ":" + ("0" + seconds).slice(-2));
+  }, 1000);
+}
+
+function resetTimer(){
+  clearInterval(timer);
+  $(".time").text("0:00");
+}
 /*
  * Display result when game is completed
  */
@@ -147,39 +163,39 @@ function endGame(){
   }
 }
 
-/*
- * Starting of games
- */
+// Open start modal on load
+$(window).on('load', function() {
+    $('#startModal').modal('show');
+});
 
-$(document).ready(function(){
-
-  /*
-   * Prompt user to start game
-   */
-  $(window).on('load',function(){
-    $( "#startModal" ).modal();
-  });
+// Prompt user to start game
+$("#start").on("click", function(){
+  console.log("clicked");
+  $( "#startModal" ).modal('hide');
+  startTimer();
   prepareCard();
+});
 
-  $(".restart").on("click", function(){
-    restart();
-    setTimeout(function(){
-      prepareCard();
-    },300);
-  });
+// Restart game and reset timer
+$(".restart").on("click", function(){
+  restart();
+  resetTimer();
+  setTimeout(function(){
+    prepareCard();
+    startTimer();
+  },300);
+});
 
-  $(".content").on("click", function(evt){
-    var click=evt.target;
-    if(openCard(click)){
-      if (openedCard.length%2!==0){
-        keepCount();
-        starLevel();
-        checkMatch(click);
-      }else{
-        addCard(click);
-      }
-      endGame();
+$(".content").on("click", function(evt){
+  var click=evt.target;
+  if(openCard(click)){
+    if (openedCard.length%2!==0){
+      keepCount();
+      starLevel();
+      checkMatch(click);
+    }else{
+      addCard(click);
     }
-  })
-
+    endGame();
+  }
 });

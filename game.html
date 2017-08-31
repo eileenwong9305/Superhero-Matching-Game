@@ -25,10 +25,17 @@
         <li class="star"><img src="images/star.png"></li>
         <li class="star"><img src="images/star.png"></li>
       </ul>
-      <span><span class="count">0</span> moves</span>
-      <div class="restart">
+      <span class="count">0</span> moves
+      <div class="restart float-right">
         <i class="fa fa-repeat"></i>
       </div>
+      <div class="pause float-right">
+        <i class="fa fa-pause"></i>
+      </div>
+      <div class="float-right">
+        <span class="time">0:00</span>
+      </div>
+
     </section>
     <div class="deck grad">
       <div class="card">
@@ -136,7 +143,7 @@
         <div class="modal-body ">EM
           <h2>Welcome to<br><em>Superhero Matching Game</em></h2>
           <h3>Game Start?</h3>
-          <button type="button" class="btn btn-default center-block" data-dismiss="modal">Start</button>
+          <button type="button" id="start" class="btn btn-default center-block" >Start</button>
         </div>
       </div>
     </div>
