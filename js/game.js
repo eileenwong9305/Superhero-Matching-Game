@@ -80,9 +80,16 @@ function restart(){
   * Flip open the card
   */
 function openCard(target){
-   $(target).addClass("front-open show");
-   $(target).siblings().addClass("back-open show");
+  if(!($(target).hasClass("match")) && !($(target).hasClass("show"))) {
+    console.log($(target));
+    $(target).addClass("front-open show");
+    $(target).siblings().addClass("back-open show");
+    console.log(true);
+    return true;
  }
+ console.log(false);
+ return false;
+}
 
 function addCard(target){
   openedCard.push($(target).siblings().attr("class").split(" ")[2]);
@@ -153,16 +160,14 @@ $(".restart").on("click", function(){
 });
 
 $(".content").on("click", function(evt){
-  openCard(evt.target);
-  if(clickCard!==undefined || evt.target!==clickCard){
-    clickCard=evt.target;
+  var click=evt.target;
+  if(openCard(click)){
     if (openedCard.length%2!==0){
       keepCount();
       starLevel();
-      checkMatch(evt.target);
-      clickCard=undefined;
+      checkMatch(click);
     }else{
-      addCard(evt.target);
+      addCard(click);
     }
     endGame();
   }
