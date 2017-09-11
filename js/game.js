@@ -6,6 +6,7 @@ var clickCard;
 var count=0;
 var timer;
 var start;
+var previousTime=0;
 var twoStar=14;
 var oneStar=20;
 var oldSuperhero=[];
@@ -64,18 +65,25 @@ function resetStar(){
   $(".stars li:nth-child(2)").children().attr("src","images/star.png");
 }
 /*
- * Reset and restart the game.
+ * Reset the game.
  */
-function restart(){
+function resetGame(){
   var match = $(".match, .front-open, .back-open");
   $(match).removeClass("front-open back-open match")
   openedCard=[];
   resetStar();
   count=0;
   $(".count").text(count);
+  resetTimer();
 }
 
-
+function restartGame(){
+  resetGame();
+  setTimeout(function(){
+    prepareCard();
+    startTimer();
+  },300);
+}
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -148,28 +156,29 @@ function starLevel(){
 
 function countTime(){
   var now = new Date().getTime();
-  var distance = now - start;
+  var distance = now - start + previousTime;
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  return [minutes, seconds];
+  return [distance, minutes, seconds];
 }
 
 function startTimer(){
-  $(".timer").text("0:00");
   start = new Date().getTime();
   timer = setInterval(function() {
     var time = countTime();
-    $(".timer").text(time[0] + ":" + ("0" + time[1]).slice(-2));
+    $(".timer").text(time[1] + ":" + ("0" + time[2]).slice(-2));
   }, 1000);
 }
 
 function stopTimer(){
   var time = countTime();
+  previousTime=time[0];
   clearInterval(timer);
-  $(".time").text(time[0] + ":" + ("0" + time[1]).slice(-2));
+  $(".time").text(time[1] + ":" + ("0" + time[2]).slice(-2));
 }
 
 function resetTimer(){
+  previousTime=0;
   clearInterval(timer);
   $(".timer").text("0:00");
 }
@@ -193,33 +202,37 @@ $(window).on('load', function() {
 
 // Prompt user to start game
 $("#start").on("click", function(){
-  console.log("clicked");
   $( "#startModal" ).modal('hide');
+  restartGame();
+});
 
-  restart();
-  prepareCard();
+// Restart the game if user selects replay
+$("#replay").on("click", function(){
+  $( "#completeModal" ).modal('hide');
+  restartGame();
+});
+
+// Restart game and reset timer when user click restart icon
+$(".restart").on("click", function(){
+  restartGame();
+});
+
+// Pause the timer and pop up pause modal
+$(".pause").on("click",function(){
+  stopTimer();
+  $('#pauseModal').modal('show');
+});
+
+// Continue the game if users click continue button
+$("#continue").on("click", function(){
+  $( "#pauseModal" ).modal('hide');
   startTimer();
 });
 
-$("#replay").on("click", function(){
-  console.log("clicked");
-  $( "#completeModal" ).modal('hide');
-  restart();
-  resetTimer();
-  setTimeout(function(){
-    prepareCard();
-    startTimer();
-  },300);
-});
-
-// Restart game and reset timer
-$(".restart").on("click", function(){
-  restart();
-  resetTimer();
-  setTimeout(function(){
-    prepareCard();
-    startTimer();
-  },300);
+// Start a new game if users click new game button
+$("#new-game").on("click", function(){
+  $( "#pauseModal" ).modal('hide');
+  restartGame()
 });
 
 $(".content").on("click", function(evt){

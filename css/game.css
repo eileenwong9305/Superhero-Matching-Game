@@ -16,7 +16,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: left;
-  width: 480px;
+  width: 55%;
   margin-bottom: 5px;
 }
 .score-panel .stars{
@@ -165,7 +165,13 @@ body {
   color:white;
   margin-top: 50px;
 }
+.button-grp{
+  display: flex;
+}
 
+#continue{
+  background-color: green;
+}
 /* complete game and result modal */
 .result{
   margin: 0;
