@@ -6,6 +6,8 @@ var clickCard;
 var count=0;
 var timer;
 var start;
+var twoStar=14;
+var oneStar=20;
 var oldSuperhero=[];
 var superhero = [
   "batman","baymax","captain-america","catwoman", "colossus","cyclops",
@@ -42,7 +44,7 @@ function shuffle(array) {
  * Shuffle the card and insert image to each card
  */
 function prepareCard(){
-  var supconsole.log(superheroList);
+  var superheroList = superhero.slice();
   superheroList = shuffle(superheroList);
   superheroList=superheroList.slice(0,8).concat(superheroList.slice(0,8));
   superheroList=shuffle(superheroList);
@@ -136,10 +138,10 @@ function keepCount(){
  * Keep track of star rating based of number of moves made
  */
 function starLevel(){
-  if (count>12){
+  if (count>twoStar){
     $(".stars li:nth-child(3)").children().attr("src","images/lost_star.png");
   }
-  if(count>16){
+  if(count>oneStar){
     $(".stars li:nth-child(2)").children().attr("src","images/lost_star.png");
   }
 }
