@@ -6,6 +6,7 @@ var clickCard;
 var count=0;
 var timer;
 var start;
+var oldSuperhero=[];
 var superhero = [
   "batman","baymax","captain-america","catwoman", "colossus","cyclops",
   "deadpool","flash","groot","harley-quinn","hellboy","hulk","ironman","joker",
@@ -41,20 +42,19 @@ function shuffle(array) {
  * Shuffle the card and insert image to each card
  */
 function prepareCard(){
-  var superheroList = superhero.slice();
-  console.log(superheroList);
+  var supconsole.log(superheroList);
   superheroList = shuffle(superheroList);
   superheroList=superheroList.slice(0,8).concat(superheroList.slice(0,8));
-  console.log(superheroList);
-  var oldSuperhero=superheroList.slice();
   superheroList=shuffle(superheroList);
   var cardSeq =$(".card").first();
   for (var i=0; i<superheroList.length; i++){
-    cardSeq.find(".back").removeClass(oldSuperhero[i]);
+    if (oldSuperhero.length!==0){
+      cardSeq.find(".back").removeClass(oldSuperhero[i]);
+    }
     cardSeq.find(".back").addClass(superheroList[i]);
     cardSeq=cardSeq.next();
   }
-  oldSuperhero = superhero;
+  oldSuperhero = superheroList.slice();
 }
 
 function resetStar(){
@@ -203,9 +203,11 @@ $("#replay").on("click", function(){
   console.log("clicked");
   $( "#completeModal" ).modal('hide');
   restart();
-  prepareCard();
-  startTimer();
-
+  resetTimer();
+  setTimeout(function(){
+    prepareCard();
+    startTimer();
+  },300);
 });
 
 // Restart game and reset timer
