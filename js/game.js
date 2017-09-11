@@ -5,6 +5,7 @@ var openedCard=[];
 var clickCard;
 var count=0;
 var timer;
+var start;
 var superhero = [
   "batman","baymax","captain-america","catwoman", "colossus","cyclops",
   "deadpool","flash","groot","harley-quinn","hellboy","hulk","ironman","joker",
@@ -12,8 +13,7 @@ var superhero = [
   "wolverine","wolverine2","wonderwoman"
 ];
 
-var superheroList=superhero.slice(0,8).concat(superhero.slice(0,8));
-console.log(superheroList);
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -41,6 +41,11 @@ function shuffle(array) {
  * Shuffle the card and insert image to each card
  */
 function prepareCard(){
+  var superheroList = superhero.slice();
+  console.log(superheroList);
+  superheroList = shuffle(superheroList);
+  superheroList=superheroList.slice(0,8).concat(superheroList.slice(0,8));
+  console.log(superheroList);
   var oldSuperhero=superheroList.slice();
   superheroList=shuffle(superheroList);
   var cardSeq =$(".card").first();
@@ -52,6 +57,10 @@ function prepareCard(){
   oldSuperhero = superhero;
 }
 
+function resetStar(){
+  $(".stars li:nth-child(3)").children().attr("src","images/star.png");
+  $(".stars li:nth-child(2)").children().attr("src","images/star.png");
+}
 /*
  * Reset and restart the game.
  */
@@ -59,8 +68,7 @@ function restart(){
   var match = $(".match, .front-open, .back-open");
   $(match).removeClass("front-open back-open match")
   openedCard=[];
-  $(".stars li:nth-child(3)").children().attr("src","images/star.png");
-  $(".stars li:nth-child(2)").children().attr("src","images/star.png");
+  resetStar();
   count=0;
   $(".count").text(count);
 }
@@ -136,20 +144,32 @@ function starLevel(){
   }
 }
 
+function countTime(){
+  var now = new Date().getTime();
+  var distance = now - start;
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  return [minutes, seconds];
+}
+
 function startTimer(){
-  var start = new Date().getTime();
+  $(".timer").text("0:00");
+  start = new Date().getTime();
   timer = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = now - start;
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    $(".time").text(minutes + ":" + ("0" + seconds).slice(-2));
+    var time = countTime();
+    $(".timer").text(time[0] + ":" + ("0" + time[1]).slice(-2));
   }, 1000);
+}
+
+function stopTimer(){
+  var time = countTime();
+  clearInterval(timer);
+  $(".time").text(time[0] + ":" + ("0" + time[1]).slice(-2));
 }
 
 function resetTimer(){
   clearInterval(timer);
-  $(".time").text("0:00");
+  $(".timer").text("0:00");
 }
 /*
  * Display result when game is completed
@@ -157,7 +177,8 @@ function resetTimer(){
 function endGame(){
   if(openedCard.length===16){
     setTimeout(function(){
-      alert("Congratulation. You have completed the game!");
+      stopTimer()
+      $("#completeModal").modal('show');
     },700);
 
   }
@@ -172,8 +193,19 @@ $(window).on('load', function() {
 $("#start").on("click", function(){
   console.log("clicked");
   $( "#startModal" ).modal('hide');
-  startTimer();
+
+  restart();
   prepareCard();
+  startTimer();
+});
+
+$("#replay").on("click", function(){
+  console.log("clicked");
+  $( "#completeModal" ).modal('hide');
+  restart();
+  prepareCard();
+  startTimer();
+
 });
 
 // Restart game and reset timer
