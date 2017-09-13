@@ -160,6 +160,7 @@ body {
   background-color: #f25757;
   color: white;
   margin-top: 50px;
+  font-size: 18px;
 }
 
 .button-grp {
@@ -175,7 +176,6 @@ body {
 .result {
   margin: 0;
   padding: 0;
-  text-align: left;
 }
 
 .result .stars {
@@ -194,6 +194,12 @@ body {
 .result .stars .star > img {
   width: 70%;
   height: 70%;
+}
+
+.best-box{
+  margin: 0 auto;
+  border: 1px white solid;
+  width: 60%;
 }
 
 /* character image */

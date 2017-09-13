@@ -17,6 +17,10 @@ var timer;
 var startTime;
 // Time when timer is paused
 var previousTime=0;
+// Best record for time
+var bestTime;
+// Record for least number of moves
+var bestMoves;
 // Card image sequence from previous game
 var oldSuperhero=[];
 // List that holds all of your cards
@@ -26,14 +30,6 @@ var superhero = [
   "leonardo","raphael","robocop","spiderman","storm","superman","thor",
   "wolverine","wolverine2","wonderwoman"
 ];
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -94,12 +90,14 @@ function startTimer(){
 
 /**
 * @description Stop timer
+* @return time - total played time
 */
 function stopTimer(){
   var time = countTime();
   previousTime=time[0];
   clearInterval(timer);
   $(".time").text(time[1] + ":" + ("0" + time[2]).slice(-2));
+  return time;
 }
 
 /**
@@ -225,12 +223,39 @@ function starLevel(){
 }
 
 /**
+* @description Record least number of moves and time
+* @param time - played time
+*/
+function recordBestScore(time){
+  if (moves<=bestMoves || bestMoves===undefined){
+    if (moves===bestMoves){
+      compareBestTime(time);
+    } else {
+      bestMoves=moves;
+      bestTime=time;
+    }
+    $(".best-time").text(bestTime[1] + ":" + ("0" + bestTime[2]).slice(-2));
+    $(".best-move").text(bestMoves);
+  }
+}
+
+/**
+* @description Compare current time with best played time
+* @param time - played time
+*/
+function compareBestTime(time){
+  if (time<bestTime || bestTime===undefined){
+    bestTime=time;
+  }
+}
+
+/**
 * @description Display a message with the final score and stop timer when all cards are matched
 */
 function endGame(){
   if(openedCard.length===TOTAL_CARDS){
     setTimeout(function(){
-      stopTimer()
+      recordBestScore(stopTimer());
       $("#completeModal").modal('show');
     },700);
   }
