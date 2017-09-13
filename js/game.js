@@ -122,7 +122,7 @@ function resetStar(){
 */
 function resetGame(){
   var match = $(".match, .front-open, .back-open");
-  $(match).removeClass("front-open back-open match")
+  $(match).removeClass("front-open back-open match");
   openedCard=[];
   resetStar();
   resetTimer();
@@ -195,9 +195,9 @@ function checkMatch(target){
   var card = $(target).siblings().attr("class").split(" ")[2];
   var el=$(".show");
   if (card === openedCard[openedCard.length-1]){
-    lockOpen(el, target)
+    lockOpen(el, target);
   } else{
-    hideCard(el)
+    hideCard(el);
   }
   $(el).removeClass("show");
 }
@@ -305,7 +305,7 @@ $("#continue").on("click", function(){
 */
 $("#new-game").on("click", function(){
   $( "#pauseModal" ).modal('hide');
-  restartGame()
+  restartGame();
 });
 
 /**

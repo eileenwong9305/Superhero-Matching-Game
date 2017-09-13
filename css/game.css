@@ -137,7 +137,7 @@ body {
 .modal {
 	display: none;
   position: fixed;
-  padding-top: 100px;
+  padding-top: 90px;
   left: 0;
   top: 0;
   width: 100%;
