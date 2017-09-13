@@ -1,42 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+<!--Superhero image matching game-->
 <head>
-    <meta charset="utf-8">
-    <title>SuperHero Matching Game</title>
-    <meta name="description" content="">
-    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/game.css">
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <title>SuperHero Matching Game</title>
+  <meta name="description" content="This a game that tests your memory and your ability to identify card with same image">
+  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
   <div class="container">
     <header>
       <h1>SuperHero Matching Game</h1>
     </header>
-
-    <section class="score-panel">
+    <!-- Score panel displaying star rating, number of moves, timer, pause and replay button-->
+    <div class="score-panel">
       <ul class="stars">
-        <li class="star"><img src="images/star.png"></li>
-        <li class="star"><img src="images/star.png"></li>
-        <li class="star"><img src="images/star.png"></li>
+        <li class="star"><img src="images/star.png" alt="star"></li>
+        <li class="star"><img src="images/star.png" alt="star"></li>
+        <li class="star"><img src="images/star.png" alt="star"></li>
       </ul>
-      <span class="count">0</span> moves
+      <!-- Number of moves played -->
+      <span class="moves">0</span> moves
+      <!-- Replay icon -->
       <div class="restart float-right">
         <i class="fa fa-repeat"></i>
       </div>
+      <!-- Pause icon -->
       <div class="pause float-right">
         <i class="fa fa-pause"></i>
       </div>
+      <!-- Timer -->
       <div class="float-right">
         <span class="timer">0:00</span>
       </div>
-
-    </section>
+    </div>
+    <!-- Group of matching cards -->
     <div class="deck grad">
       <div class="card">
         <div class="content">
@@ -165,19 +166,19 @@
     </div>
   </div>
 
-  <!--Complete Modal-->
+  <!--Complete game modal-->
   <div id="completeModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content grad">
         <div class="modal-body ">
           <h2>Well done! You have completed the game.</h2>
-          <section class="result">
+          <div class="result">
             <ul class="stars">
-              <li class="star"><img src="images/star.png"></li>
-              <li class="star"><img src="images/star.png"></li>
-              <li class="star"><img src="images/star.png"></li>
+              <li class="star"><img src="images/star.png" alt="star"></li>
+              <li class="star"><img src="images/star.png" alt="star"></li>
+              <li class="star"><img src="images/star.png" alt="star"></li>
             </ul>
-          </section>
+          </div>
           <h3>Time: <span class="time"></span></h3>
           <button type="button" id="replay" class="btn btn-default center-block" >Replay</button>
         </div>
@@ -185,6 +186,9 @@
     </div>
   </div>
 
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="js/game.js"></script>
 </body>
 </html>

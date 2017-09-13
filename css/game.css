@@ -1,76 +1,84 @@
-*{
-  box-sizing: border-box;
-}
 body {
     background: #ffffff url('../images/gaming-pattern.png'); /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
     font-style: normal;
 }
-.container{
+
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction:column;
+  flex-direction: column;
 }
-.score-panel{
+
+/* score panel containing star rating, number of moves, timer, pause and replay button */
+.score-panel {
   margin: 0;
   padding: 0;
   text-align: left;
   width: 55%;
   margin-bottom: 5px;
+  font-size: 20px;
 }
-.score-panel .stars{
-  margin: 0;
+
+.score-panel .stars {
   padding: 0;
   display: inline-block;
   margin: 0 5px 0 0;
 }
-.score-panel .stars li{
+
+.score-panel .stars li {
   margin: 0;
   padding: 0;
   list-style: none;
   display: inline-block;
 }
-.star>img{
-  width:20px;
+
+.star > img {
+  width: 20px;
   height: 20px;
+  vertical-align: initial;
 }
 
-.score-panel .float-right{
+.float-right {
   margin: 0 auto;
   margin-left: 5px;
-  padding:0
-  display:inline-block;
+  padding: 0;
+  display: inline-block;
   float: right;
+}
+
+.pause, .restart {
   cursor: pointer;
 }
 
-.deck{
+/* Decks of randomly shuffled cards */
+.deck {
   width:60%;
-  background-color: #08415C;
   padding: 20px;
   border-radius: 20px;
-  border: 5px #F0803C solid;
+  border: 5px #f0803c solid;
 }
-.card{
-  float:left;
-  width:21.6%;
-  padding-bottom: 21.6%;
-  margin:1.66%;
-  border-radius: 10px;
-  position: relative;
-  cursor:pointer;
-  -webkit-perspective: 800px;
-  -moz-perspective: 800px;
-  -o-perspective: 800px;
-  perspective: 800px;
-}
+
+/* Gradient color for the deck background */
 .grad {
   background: #141e30;
-  background: -webkit-linear-gradient(to right bottom, #141e30, #243b55);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right bottom, #141e30, #243b55); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, #141e30, #243b55);
 }
-.card .content{
+
+/* Play card */
+.card {
+  float: left;
+  width: 21.6%;
+  padding-bottom: 21.6%;
+  margin: 1.66%;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  perspective: 800px;
+}
+
+.card .content {
   border-radius: 10px;
   position: absolute;
   height: 100%;
@@ -82,63 +90,51 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   display: block;
-  position: absolute;
   height: 100%;
   width: 100%;
   border-radius: 10px;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transition: -webkit-transform 0.5s;
-  -moz-transition: -moz-transform 0.5s;
-  -o-transition: -o-transform 0.5s;
   transition: transform 0.5s;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-transform-origin: 50% 50%;
 }
-.card .content div{
 
-}
-.card .content .front{
+.card .content .front {
   position: absolute;
-  background-color: #F0803C;
-  border: 5px #F0803C solid;
-  -webkit-transform: rotateY( 0deg );
-  -moz-transform: rotateY( 0deg );
-  -o-transform: rotateY( 0deg );
+  background-color: #f0803c;
+  border: 5px #f0803c solid;
   transform: rotateY(0deg);
 }
 
-.card .content .back{
-  background-color: #EAF2E3;
-  border: 10px #EAF2E3 solid;
-  -webkit-transform: rotateY( 180deg );
-  -moz-transform: rotateY( 180deg );
-  -o-transform: rotateY( 180deg );
+.card .content .back {
+  background-color: #eaf2e3;
+  border: 10px #eaf2e3 solid;
   transform: rotateY(180deg);
 }
 
-.card .content .front-open{
+/* when card is flipped open */
+.card .content .front-open {
   transform: rotateY(180deg);
 }
-.card .content .back-open{
+
+.card .content .back-open {
   transform: rotateY(0deg);
   cursor: not-allowed;
 }
 
-.card .content .match{
+/* when two cards are matched */
+.card .content .match {
   background-color: #fff94f;
   border: 10px #fff94f solid;
 }
-.card .content .wrong{
-  background-color: #F25757;
-  border: 10px #F25757 solid;
+
+/* when two cards are not matched */
+.card .content .wrong {
+  background-color: #f25757;
+  border: 10px #f25757 solid;
 }
-.modal{
+
+/* style for all pop-up modal*/
+.modal {
 	display: none;
   position: fixed;
   padding-top: 100px;
@@ -146,123 +142,153 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #ffffff url('../images/gaming-pattern.png');
+  background: #ffffff url(../images/gaming-pattern.png);
 }
-.modal-body h2{
+
+.modal-body h2 {
   text-align: center;
-  text
   margin-bottom: 50px;
-  color:white;
+  color: white;
 }
 
-.modal-body h3{
+.modal-body h3 {
   text-align: center;
-  color:white;
+  color: white;
 }
 
-.modal-body button{
-  background-color: #F25757;
-  color:white;
+.modal-body button {
+  background-color: #f25757;
+  color: white;
   margin-top: 50px;
 }
-.button-grp{
+
+.button-grp {
   display: flex;
 }
 
-#continue{
+/* conitnue button for pause modal */
+#continue {
   background-color: green;
 }
-/* complete game and result modal */
-.result{
+
+/* design for complete game modal */
+.result {
   margin: 0;
   padding: 0;
   text-align: left;
 }
-.result .stars{
+
+.result .stars {
   padding: 0;
   display: table;
   margin: 0 auto;
 }
-.result .stars li{
+
+.result .stars li {
   margin: 0;
   padding: 0;
   list-style: none;
   display: inline-block;
 }
-.result .stars .star>img{
+
+.result .stars .star > img {
   width: 70%;
   height: 70%;
 }
+
 /* character image */
-.superman{
-  background-image: url("../images/superman.png");
+.superman {
+  background-image: url(../images/superman.png);
 }
-.catwoman{
-  background-image: url("../images/catwoman.png");
+
+.catwoman {
+  background-image: url(../images/catwoman.png);
 }
-.baymax{
-  background-image: url("../images/baymax.png");
+
+.baymax {
+  background-image: url(../images/baymax.png);
 }
-.wolverine{
-  background-image: url("../images/wolverine.png");
+
+.wolverine {
+  background-image: url(../images/wolverine.png);
 }
-.joker{
-  background-image: url("../images/joker.png");
+
+.joker {
+  background-image: url(../images/joker.png);
 }
-.batman{
-  background-image: url("../images/batman.png");
+
+.batman {
+  background-image: url(../images/batman.png);
 }
-.raphael{
-  background-image: url("../images/raphael.png");
+
+.raphael {
+  background-image: url(../images/raphael.png);
 }
-.captain-america{
-  background-image: url("../images/captain_america.png");
+
+.captain-america {
+  background-image: url(../images/captain_america.png);
 }
-.colossus{
-  background-image: url("../images/colossus.png");
+
+.colossus {
+  background-image: url(../images/colossus.png);
 }
-.cyclops{
-  background-image: url("../images/cyclops.png");
+
+.cyclops {
+  background-image: url(../images/cyclops.png);
 }
-.deadpool{
-  background-image: url("../images/deadpool.png");
+
+.deadpool {
+  background-image: url(../images/deadpool.png);
 }
-.flash{
-  background-image: url("../images/flash.png");
+
+.flash {
+  background-image: url(../images/flash.png);
 }
-.groot{
-  background-image: url("../images/groot.png");
+
+.groot {
+  background-image: url(../images/groot.png);
 }
-.harley-quinn{
-  background-image: url("../images/harley_quinn.png");
+
+.harley-quinn {
+  background-image: url(../images/harley_quinn.png);
 }
-.hellboy{
-  background-image: url("../images/hellboy.png");
+
+.hellboy {
+  background-image: url(../images/hellboy.png);
 }
-.hulk{
-  background-image: url("../images/hulk.png");
+
+.hulk {
+  background-image: url(../images/hulk.png);
 }
-.ironman{
-  background-image: url("../images/ironman.png");
+
+.ironman {
+  background-image: url(../images/ironman.png);
 }
-.leonardo{
-  background-image: url("../images/leonardo.png");
+
+.leonardo {
+  background-image: url(../images/leonardo.png);
 }
-.spiderman{
-  background-image: url("../images/spiderman.png");
+
+.spiderman {
+  background-image: url(../images/spiderman.png);
 }
-.robocop{
-  background-image: url("../images/robocop.png");
+
+.robocop {
+  background-image: url(../images/robocop.png);
 }
-.thor{
-  background-image: url("../images/thor.png");
+
+.thor {
+  background-image: url(../images/thor.png);
 }
-.wonderwoman{
-  background-image: url("../images/wonderwoman.png");
+
+.wonderwoman {
+  background-image: url(../images/wonderwoman.png);
 }
-.wolverine2{
-  background-image: url("../images/wolverine2.png");
+
+.wolverine2 {
+  background-image: url(../images/wolverine2.png);
 }
-.storm{
-  background-image: url("../images/storm.png");
+
+.storm {
+  background-image: url(../images/storm.png);
 }
