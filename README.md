@@ -21,6 +21,10 @@ This project contains following files:
 - README.md: explanation of the game
 
 ## Load the Game
+[Click to play here](https://eileenwong9305.github.io/superhero-memory-game/).
+
+OR
+
 Download the project zip file to your pc and unzip the file. Or clone the repo to your pc.
 Open game.html in browser. Your browser should launch the game.
 
